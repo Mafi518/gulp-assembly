@@ -1,0 +1,23 @@
+%container {
+    max-width: 1440px;
+    padding: 0 15px;
+    margin: 0 auto;
+    margin-top: ;
+    display: flex;
+}
+%title {
+    font-size: 36px;
+    color: $text;
+    margin-bottom: 30px;
+}
+%subtitle {
+    color: $subtitle;
+}
+%cta-btn {
+    padding-top: 19px;
+    padding-bottom: 19px;
+    font-size: 24px;
+    text-align: center;
+    background-color: $accent;
+    color: $text;
+}
