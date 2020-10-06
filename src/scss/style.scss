@@ -1,4 +1,6 @@
 @import '../../node_modules/normalize.css/normalize';
+@import 'variables';
+@import 'mixins';
 * {
     box-sizing: border-box;
 }
@@ -77,3 +79,11 @@ a {
 .scroll-lock {
     overflow: auto;
 }
+
+
+
+
+
+
+
+@import 'media';
