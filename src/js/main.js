@@ -8,11 +8,13 @@ const burger = document.querySelector('.menu-icon').addEventListener('click', fu
     const menu = document.querySelector('.menu')
     this.classList.toggle('menu-icon__active')
     menu.classList.toggle('menu__active')
+    disableScroll()
 
     let links = document.querySelectorAll('.menu__link').forEach(element => {
         element.onclick = () => {
             menu.classList.toggle('menu__active')
             this.classList.toggle('menu-icon__active')
+            disableScroll()
         }
     })
 })

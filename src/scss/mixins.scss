@@ -1,23 +1,26 @@
 %container {
-    max-width: 1440px;
+    max-width: $max-width;
     padding: 0 15px;
     margin: 0 auto;
     margin-top: ;
-    display: flex;
 }
-%title {
-    font-size: 36px;
-    color: $text;
-    margin-bottom: 30px;
+%h1 {
+    font-size: ;
 }
-%subtitle {
-    color: $subtitle;
+%h2 {
+    font-size: ;
+}
+%h3 {
+    font-size: ;
+}
+%h1, %h2, %h3 {
+    font-family: serif;
+    font-weight: bold;
 }
 %cta-btn {
-    padding-top: 19px;
-    padding-bottom: 19px;
     font-size: 24px;
     text-align: center;
     background-color: $accent;
     color: $text;
+    cursor: pointer;
 }

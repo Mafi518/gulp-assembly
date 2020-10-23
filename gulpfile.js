@@ -55,7 +55,7 @@ function images() {
             progressive: true,
             svgoPlugins: [{removeVievBox: false}],
             interlaced: true,
-            optimizationLevel: 3 //0 to 7
+            optimizationLevel: 2 //0 to 7
         }))
         .pipe(dest('dist/img'))
 }
