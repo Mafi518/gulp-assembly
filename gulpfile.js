@@ -46,7 +46,7 @@ function images() {
     return src('src/images/**.*')
         .pipe(
             webp({
-                quality: 80
+                quality: 90
             })
         )
         .pipe(dest('dist/img'))
@@ -55,7 +55,7 @@ function images() {
             progressive: true,
             svgoPlugins: [{removeVievBox: false}],
             interlaced: true,
-            optimizationLevel: 2 //0 to 7
+            optimizationLevel: 1 //0 to 7
         }))
         .pipe(dest('dist/img'))
 }
