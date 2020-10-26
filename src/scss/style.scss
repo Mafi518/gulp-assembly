@@ -1,6 +1,7 @@
 @import '../../node_modules/normalize.css/normalize';
 @import 'variables';
 @import 'mixins';
+@import 'fonts';
 * {
     box-sizing: border-box;
 }
@@ -18,7 +19,6 @@ p, h1, h2, h3, h4, h5, h6, ul {
     margin: 0;
 }
 a {
-    color: #fff;
     text-decoration: none;
     cursor: pointer;
 }
@@ -33,6 +33,9 @@ a {
 }
 .h3 {
     @extend %h3;
+}
+.cta {
+    @extend %cta-btn;
 }
 
 .menu-icon {

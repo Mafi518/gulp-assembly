@@ -11,6 +11,18 @@ const webp = require('gulp-webp')
 const webphtml = require('gulp-webp-html')
 const webpcss = require('gulp-webp-css')
 const sync = require('browser-sync').create()
+const ttf2woff = require('gulp-ttf2woff')
+const ttf2woff2 = require('gulp-ttf2woff2')
+const ttf2svg = require('gulp-ttf-svg')
+const fonter = require('gulp-fonter')
+
+let fs = require('fs')
+
+let path = {
+    build: {
+        fonts: 'src/fonts/'
+    }
+}
 
 
 function html() {
@@ -21,6 +33,52 @@ function html() {
             collapseWhitespace: true
         }))
         .pipe(dest('dist'))
+}
+
+async function fontsStyle(params) {
+    let file_content = fs.readFileSync('src/scss/fonts.scss');
+    if (file_content == '') {
+        fs.writeFile('src/scss/fonts.scss', '', cb);
+        return fs.readdir(path.build.fonts, function (err, items) {
+            if (items) {
+                let c_fontname;
+                for (var i = 0; i < items.length; i++) {
+                    let fontname = items[i].split('.');
+                    fontname = fontname[0];
+                    if (c_fontname != fontname) {
+                        fs.appendFile('src/scss/fonts.scss', '@include font("' + fontname + '", "' + fontname + '", "400", "normal");\r\n', cb);
+                    }
+                    c_fontname = fontname;
+                }
+            }
+        })
+    }
+}
+
+function cb() {
+
+}
+
+
+function otf2ttf() {
+    return src('src/fonts/**.otf')
+        .pipe(fonter({
+            formats: ['ttf']
+        }))
+        .pipe(dest('../src/fonts'))
+}
+
+function fonts (params) {
+    src('src/fonts/**.ttf')
+        .pipe(ttf2woff())
+        .pipe(dest('dist/fonts'))
+    src('src/fonts/**.ttf')
+        .pipe(ttf2svg())
+        .pipe(dest('dist/fonts'))
+    return src('src/fonts/**.ttf')
+        .pipe(ttf2woff2())
+        .pipe(dest('dist/fonts'))
+
 }
 
 function js() {
@@ -74,4 +132,4 @@ function serve() {
     watch('src/js/**.js', series(js)).on('change', sync.reload)
 }
 
-exports.serve = series(clear, scss, html, js, images, serve)
+exports.serve = series(clear, scss, html, js, images, otf2ttf, fonts, fontsStyle, serve)
